@@ -105,7 +105,16 @@ export const AuthProvider = ({ children }) => {
         } catch (error) {
             logger.error('Login failed:', error);
             logger.error('Error details:', error.response?.data);
-            alert('Login error: ' + (error.response?.data?.error || error.message || 'Connection failed'));
+
+            // Properly extract error message
+            let errorMessage = 'Connection failed';
+            if (error.response?.data?.error) {
+                errorMessage = error.response.data.error;
+            } else if (error.message) {
+                errorMessage = error.message;
+            }
+
+            alert('Login error: ' + errorMessage);
         } finally {
             setIsLoading(false);
         }
