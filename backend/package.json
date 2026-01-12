@@ -25,6 +25,9 @@
     "db:studio": "prisma studio",
     "db:seed": "npx ts-node prisma/seed.ts"
   },
+  "engines": {
+    "node": ">=20.0.0"
+  },
   "prisma": {
     "seed": "ts-node prisma/seed.ts"
   },
