@@ -3,7 +3,7 @@ import { Cron, CronExpression } from '@nestjs/schedule';
 import { PrismaService } from '../common/prisma/prisma.service';
 import { JobService } from './job.service';
 import { NotificationService } from '../modules/notification/notification.service';
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'crypto';
 
 type BackgroundJob = {
     id: string;
@@ -16,7 +16,7 @@ const BATCH_SIZE = 500;
 @Injectable()
 export class JobWorkerService implements OnModuleInit {
     private readonly logger = new Logger(JobWorkerService.name);
-    private readonly workerId = `worker-${uuidv4().slice(0, 8)}`;
+    private readonly workerId = `worker-${randomUUID().slice(0, 8)}`;
     private isProcessing = false;
 
     constructor(

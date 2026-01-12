@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import * as fs from 'fs';
 import * as path from 'path';
-import { v4 as uuidv4 } from 'uuid';
+import { randomUUID } from 'crypto';
 
 export interface UploadedFile {
     fieldname: string;
@@ -52,7 +52,7 @@ export class UploadService {
 
         // Generate unique filename
         const ext = path.extname(file.originalname);
-        const filename = `${uuidv4()}${ext}`;
+        const filename = `${randomUUID()}${ext}`;
         const filePath = path.join(this.uploadDir, folder, filename);
 
         // Save file
@@ -118,7 +118,7 @@ export class UploadService {
         }
 
         // Save file
-        const filename = `${uuidv4()}.${ext}`;
+        const filename = `${randomUUID()}.${ext}`;
         const filePath = path.join(this.uploadDir, folder, filename);
         fs.writeFileSync(filePath, buffer);
 
