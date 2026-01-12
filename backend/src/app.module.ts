@@ -22,6 +22,8 @@ import { LineBotModule } from './modules/line-bot/line-bot.module';
 import { JobModule } from './jobs/job.module';
 import { CropTypeModule } from './modules/crop-type/crop-type.module';
 
+import { HealthController } from './health.controller';
+
 @Module({
     imports: [
         // ตั้งค่า Environment Variables
@@ -55,6 +57,7 @@ import { CropTypeModule } from './modules/crop-type/crop-type.module';
         JobModule,
         CropTypeModule,
     ],
+    controllers: [HealthController],
 })
 
 export class AppModule { }
