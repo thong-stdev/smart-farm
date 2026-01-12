@@ -326,7 +326,6 @@ async function main() {
             { type: ActivityType.EXPENSE, amount: 1800, description: 'ค่าแรงหว่านข้าว', date: new Date('2025-11-18') },
             { type: ActivityType.EXPENSE, amount: 2100, description: 'ค่าปุ๋ยแต่งหน้า', date: new Date('2025-12-15') },
             { type: ActivityType.EXPENSE, amount: 800, description: 'ค่ายากำจัดวัชพืช', date: new Date('2025-12-20') },
-            { type: ActivityType.INCOME, amount: 45000, description: 'ขายข้าวรอบก่อน', date: new Date('2025-10-01') },
         ];
 
         for (const activity of activities) {
