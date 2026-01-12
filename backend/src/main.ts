@@ -35,7 +35,7 @@ async function bootstrap() {
     SwaggerModule.setup('api/docs', app, document);
 
     const port = process.env.PORT || 3001;
-    await app.listen(port);
+    await app.listen(port, '0.0.0.0');
     console.log(`🚀 Smart Farm API กำลังทำงานที่ http://localhost:${port}`);
     console.log(`📚 API Docs: http://localhost:${port}/api/docs`);
 }
