@@ -1,0 +1,203 @@
+Smart Farm Management System — Tech & System Summary
+1️⃣ ภาพรวมระบบ (Big Picture)
+ระบบจัดการแปลงเกษตร
+ใช้งานผ่าน LINE LIFF / Web Portal / Admin Web
+มี AI ช่วยบันทึกกิจกรรมด้วยเสียงหรือข้อความ
+รองรับผู้ใช้จำนวนมาก และขยายสเกลได้
+2️⃣ เทคโนโลยีที่ใช้ (Technology Stack)
+🎨 Frontend
+ส่วน	เทคโนโลยี
+Web + LIFF	Next.js (React + App Router)
+UI	Tailwind CSS + shadcn/ui
+State	Zustand
+Chart	Recharts
+Map	Google Maps / Mapbox
+LIFF SDK	LINE LIFF SDK
+Auth UI	OAuth Redirect Flow
+📱 Mobile (Optional / Future) สร้างอนาคต
+ส่วน	เทค
+App	Flutter
+API	ใช้ Backend เดียวกับ Web
+⚙️ Backend
+ส่วน	เทคโนโลยี
+Runtime	Node.js (NestJS / Fastify)
+API	REST API
+Auth	OAuth 2.0 + JWT
+Validation	Zod
+ORM	Prisma
+Background Job	BullMQ / Redis
+Cache	Redis
+AI Module	OpenAI API
+File Upload	S3 Compatible (Cloudflare R2 / AWS S3)
+🗄️ Database
+ส่วน	เทค
+Main DB	PostgreSQL
+Migration	Prisma Migrate
+Indexing	DB Index + Query Optimize
+Analytics	Materialized View (Optional)
+☁️ Infrastructure
+ส่วน	เทค
+Container	Docker
+Reverse Proxy	Nginx
+CI/CD	GitHub Actions
+Deploy	VPS / Cloud
+Scale	Horizontal Scaling
+Monitoring	PM2 / Grafana
+3️⃣ ระบบย่อยทั้งหมด (System Modules)
+🔐 1. ระบบผู้ใช้ & Login
+Login หลายแพลตฟอร์ม
+LINE Login (LIFF)
+Google
+Email / Password
+Role & Permission
+User
+Admin
+Super Admin
+🌱 2. ระบบจัดการแปลงเกษตร
+แปลง (Plot)
+พิกัดแผนที่
+รูปภาพแปลง
+สถานะแปลง
+🌾 3. ระบบรอบการปลูก (Crop Cycle)
+เริ่ม–จบรอบการปลูก
+ผูกพันธุ์พืช
+คำนวณวันเก็บเกี่ยว
+ประวัติย้อนหลัง
+📋 4. ระบบบันทึกกิจกรรม (Core System)
+รายรับ / รายจ่าย
+งานเกษตร (ปลูก, ใส่ปุ๋ย, พ่นยา)
+ผูก:
+แปลง
+รอบการปลูก
+สินค้า
+แนบรูป / เสียง
+🤖 5. ระบบ AI ผู้ช่วยบันทึกข้อมูล
+พูด → ข้อความ (Speech-to-Text)
+ข้อความ → โครงสร้างข้อมูล (AI Parser)
+Auto fill:
+ประเภทกิจกรรม
+แปลง
+ปริมาณ
+ต้นทุน
+ตัวอย่าง:
+“ใส่ปุ๋ยยูเรีย 2 กระสอบ แปลง A วันนี้”
+📦 6. ระบบสินค้า & วัสดุ
+ปุ๋ย / ยา / อุปกรณ์
+หมวดหมู่ / ยี่ห้อ
+ใช้เป็น Master Data
+📊 7. ระบบรายงาน & Dashboard (Web)
+สรุปต้นทุน
+ผลผลิตต่อแปลง
+กำไร–ขาดทุน
+Filter ตามเวลา / แปลง
+Export (Excel / PDF)
+🛠️ 8. ระบบ Admin
+จัดการผู้ใช้
+จัดการ Master Data
+จัดการสิทธิ์
+ดูภาพรวมทั้งระบบ
+🔔 9. ระบบแจ้งเตือน
+แจ้งเตือนผ่าน LINE
+เตือนตามแผนการปลูก
+เตือนกิจกรรมที่ยังไม่ทำ
+
+โครงสร้างโปรเจกต์ (แนะนำ)
+📁 Root
+smart-farm/
+├── frontend/
+├── backend/
+├── shared/
+├── infra/
+└── README.md
+
+Frontend
+frontend/
+├── app/                         # Next.js App Router
+│   ├── auth/                  # login / callback (LINE, Google)
+│   │   └── callback/
+│   │
+│   ├── liff/                  # ผู้ใช้ผ่าน LINE (Mobile UX)
+│   │   ├── dashboard/
+│   │   ├── add-activity/
+│   │   └── layout.tsx           # layout mobile
+│   │
+│   ├── web/                   # ผู้ใช้ผ่าน Web (ละเอียด)
+│   │   ├── dashboard/
+│   │   ├── activities/
+│   │   ├── plots/
+│   │   ├── crop-cycles/
+│   │   └── reports/
+│   │
+│   ├── admin/                 # Admin Web
+│   │   ├── users/
+│   │   ├── master-data/
+│   │   └── settings/
+│   │
+│   └── layout.tsx               # root layout
+│
+├── components/                  # reusable UI
+│   ├── ui/
+│   ├── forms/
+│   ├── charts/
+│   └── maps/
+│
+├── features/                    # business logic
+│   ├── activity/
+│   ├── plot/
+│   ├── crop-cycle/
+│   ├── auth/
+│   └── ai-assistant/
+│
+├── services/                    # external / API
+│   ├── api.ts
+│   ├── auth.ts
+│   ├── liff.ts
+│   ├── ai.ts
+│   └── speech.ts
+│
+├── stores/                      # Zustand / Redux
+├── hooks/
+├── types/
+└── utils/
+
+Backend (รองรับคนจำนวนมาก)
+backend/
+├── src/
+│   ├── modules/                 # แยกตามโดเมน
+│   │   ├── auth/
+│   │   ├── user/
+│   │   ├── plot/
+│   │   ├── crop-cycle/
+│   │   ├── activity/
+│   │   ├── product/
+│   │   └── ai/
+│   │
+│   ├── api/                     # REST / GraphQL
+│   ├── middlewares/
+│   ├── jobs/                    # background jobs (queue)
+│   ├── utils/
+│   └── main.ts
+│
+├── prisma/
+│   ├── schema.prisma
+│   └── migrations/
+│
+└── tests/
+
+Shared (ใช้ร่วม Frontend + Backend)
+shared/
+├── types/
+├── constants/
+└── validators/
+
+Infra (รองรับ Scale)
+infra/
+├── docker/
+│   ├── frontend.Dockerfile
+│   ├── backend.Dockerfile
+│   └── nginx.conf
+│
+├── k8s/              # (optional)
+├── terraform/        # (optional)
+└── env/
+

@@ -1,0 +1,97 @@
+# =====================================================
+# Smart Farm Project - .gitignore
+# =====================================================
+
+# ==================== Dependencies ====================
+node_modules/
+.pnp
+.pnp.js
+
+# ==================== Build Outputs ====================
+# Backend
+backend/dist/
+backend/build/
+
+# Frontend
+frontend/.next/
+frontend/out/
+frontend/build/
+
+# Shared
+shared/dist/
+
+# ==================== Environment Files ====================
+# ⚠️ IMPORTANT: Never commit real .env files!
+.env
+.env.local
+.env.*.local
+.env.development
+.env.production
+!.env.example
+
+# ==================== IDE & Editor ====================
+.idea/
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+*.swp
+*.swo
+*~
+
+# ==================== OS Files ====================
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+desktop.ini
+
+# ==================== Logs ====================
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# ==================== Testing ====================
+coverage/
+.nyc_output/
+
+# ==================== Database ====================
+# Prisma
+prisma/migrations/**/migration_lock.toml
+
+# SQLite (if used for testing)
+*.db
+*.sqlite
+*.sqlite3
+
+# ==================== Next.js ====================
+.next/
+out/
+.vercel
+
+# ==================== TypeScript ====================
+*.tsbuildinfo
+next-env.d.ts
+
+# ==================== Misc ====================
+.cache/
+.temp/
+.tmp/
+
+# Uploaded files (if stored locally)
+uploads/
+public/uploads/
+
+# ==================== Railway ====================
+# No Railway-specific ignores needed
+
+# ==================== Secrets (Extra Safety) ====================
+*.pem
+*.key
+*.crt
+secrets/
